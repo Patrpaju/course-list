@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<title>View Ict Courses</title>
+</head>
+
+<body>
+	<h1>Ict Courses</h1>
+	<tr th:each="course : ${courses}">
+	<div>
+		<label for="name">Name</label>
+		<td th:text="${course.name}"
+		<label for="code">Code</label>
+		<td th:text="${course.code}"
+		<label for="credits">Credits</label>
+		<td th:text="${course.credits}"
+		<label for="grade">Grade</label>
+	<td th:text="${course.grade}"
+		</tr>
+ 
+	</div>
+	<a href="/save" class="btn btn-primary">Go Back to Add Course</a>
+</body>
+
+</html>
