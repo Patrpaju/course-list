@@ -9,18 +9,26 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <body>
 	<h1>Ict Courses</h1>
-	<tr th:each="course : ${courses}">
-	<div>
-		<label for="name">Name</label>
-		<td th:text="${course.name}"
-		<label for="code">Code</label>
-		<td th:text="${course.code}"
-		<label for="credits">Credits</label>
-		<td th:text="${course.credits}"
-		<label for="grade">Grade</label>
-	<td th:text="${course.grade}"
+	<table class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<th>Code</th>
+			<th>Credits</th>
+			<th>Grade</th>
+			<th>Category</th>
+			<th sec:authorize="hasAuthority('ADMIN')"> </th>
 		</tr>
- 
+		<tr th:each="course : ${courses}">
+			</td>
+			<td th:text="${course.name}"></td>
+			<td th:text="${course.code}"></td>
+			<td th:text="${course.credits}"></td>
+			<td th:text="${course.grade}"></td>
+			<td th:text="${course.category.name}"></td> 	
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${course.id})}" class="btn btn-danger">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${course.id})}" class="btn btn-primary">Edit</a></td>
+		</tr>
+	</table>
 	</div>
 	<a href="/save" class="btn btn-primary">Go Back to Add Course</a>
 </body>

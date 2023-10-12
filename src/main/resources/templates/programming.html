@@ -3,26 +3,34 @@
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	   <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
-	<title>View Programming Courses</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<title>View Ict Courses</title>
 </head>
 
 <body>
-	<h1>Programming Courses</h1>
-	<div>
-		<input type="hidden" id="id" th:field="*{id}" />
-		<label for="name">Name</label>
-		<span name="name" th:text="${course.id}"></span>
-		<label for="code">Code</label>
-		<span name="code" th:text="${course.code"></span>
-		<label for="credits">Credits</label>
-		<span name="credits" th:text="${course.credits}"></span>
-		<label for="grade">Grade</label>
-		<span name="grade" th:text="${course.grade}"></span>
-		
- 
+	<h1>Ict Courses</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<th>Code</th>
+			<th>Credits</th>
+			<th>Grade</th>
+			<th>Category</th>
+			<th sec:authorize="hasAuthority('ADMIN')"> </th>
+		</tr>
+		<tr th:each="course : ${courses}">
+			</td>
+			<td th:text="${course.name}"></td>
+			<td th:text="${course.code}"></td>
+			<td th:text="${course.credits}"></td>
+			<td th:text="${course.grade}"></td>
+			<td th:text="${course.category.name}"></td> 	
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${course.id})}" class="btn btn-danger">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${course.id})}" class="btn btn-primary">Edit</a></td>
+		</tr>
+	</table>
 	</div>
 	<a href="/save" class="btn btn-primary">Go Back to Add Course</a>
 </body>
 
-</html>
+</html>html>
