@@ -3,13 +3,14 @@
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Add Course</title>
+	<title>Edit course</title>
 </head>
 
 <body>
-	<h1>Add Course</h1>
+	<h1>Edit Course</h1>
 	<div>
-	<form th:object="${course}" th:action="@{/save}" action="#" method="post">
+	<form th:object="${course}" th:action="@{../save}" action="#" method="post">
+		<input type="hidden" id="id" th:field="*{id}" />
 		<label for="name">Name</label>
 		<input type="text" id="name" th:field="*{name}" />
 		<label for="code">Code</label>
@@ -18,24 +19,16 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 		<input type="text" id="credits" th:field="*{credits}" />
 		<label for="grade">Grade</label>
 		<input type="text" id="grade" th:field="*{grade}" />
-		
 			<div style="clear: both; display: block; height: 10px;"></div>						
 		  	<label for="catlist">Category</label>
 			 <select id="catlist" th:field="*{category}" class="form-control">
        			<option th:each="category: ${categorys}" th:value="${category.categoryid}" th:text="${category.name}"></option>
     		</select>
     		
-    	<div style="clear: both; display: block; height: 10px;"></div>
-		<input type="submit" value="Save"></input>	
+    	<div style="clear: both; display: block; height: 10px;"></div>			
+		<input type="submit" value="Save"></input>
 	</form>
 	</div>
-	<h1>View Courses</h1>
-	<a href="/courselist" class="btn btn-success">View all courses</a><br>
-	<a href="/programming" class="btn btn-success">View Programming Courses</a><br>
-	<a href="/ict" class="btn btn-success">View ICT and Business Courses</a><br>
-	<a href="/key" class="btn btn-success">View Key Competency Courses</a><br>
-	<span th:if="${averageGrade}" th:text="'Average Grade: ' + ${averageGrade}"></span>
-
 </body>
 
 </html>

@@ -29,8 +29,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${course.id})}" class="btn btn-primary">Edit</a></td>
 		</tr>
 	</table>
+	<span th:if="${totalCredits}" th:text="'Total Credits in ICT: ' + ${totalCredits}"></span><br>
 	</div>
-	<a href="/save" class="btn btn-primary">Go Back to Add Course</a>
+	<a href="/courselist" class="btn btn-primary">Go Back to all courses</a>
 </body>
 
 </html>

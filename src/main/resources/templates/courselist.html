@@ -1,48 +1,58 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"  
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
-    <title>Courselist</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<title>Courselist</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
+
 <body>
-<div class="container">
-	<div class="col-md-4">
+	<div class="container">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
+			<span sec:authentication="name">Name</span>
+
+		</div>
+		<div class="col-md-4" style="padding:20px 0">
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+			</form>
+		</div>
+		<h1>Courselist</h1>
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th>Code</th>
+				<th>Credits</th>
+				<th>Grade</th>
+				<th>Category</th>
+				<th sec:authorize="hasAuthority('ADMIN')">
+					</t>
+			</tr>
+			<tr th:each="course : ${courses}">
+				</td>
+				<td th:text="${course.name}"></td>
+				<td th:text="${course.code}"></td>
+				<td th:text="${course.credits}"></td>
+				<td th:text="${course.grade}"></td>
+				<td th:text="${course.category.name}"></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${course.id})}"
+						class="btn btn-danger">Delete</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${course.id})}"
+						class="btn btn-primary">Edit</a></td>
+			</tr>
+		</table>
+
+		<a href="/programming" class="btn btn-success">View Programming Courses</a>
+		<a href="/ict" class="btn btn-success">View Ict Courses</a>
+		<a href="/key" class="btn btn-success">View Key Competency Courses</a><br>
+		<a href="/save" class="btn btn-success">Add Course</a><br>
+		<span th:if="${averageGrade}" th:text="'Average Grade: ' + ${averageGrade}"></span><br>
+		<span th:if="${totalCredits}" th:text="'Total Credits: ' + ${totalCredits} + '/210'"></span><br>
+		<span th:if="${percent}" th:text="'Percentage of total credits complete: ' + ${percent} + '%'"></span>
 	</div>
-	<div class="col-md-4">
-        <span  sec:authentication="name">Name</span>
-		
-	</div>
-	<div class="col-md-4" style="padding:20px 0">
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
-		</form>
-	</div>
-	<h1>Courselist</h1>
-	<table class="table table-striped">
-		<tr>
-			<th>Name</th>
-			<th>Code</th>
-			<th>Credits</th>
-			<th>Grade</th>
-			<th>Category</th>
-			<th sec:authorize="hasAuthority('ADMIN')"> </t>
-		</tr>
-		<tr th:each="course : ${courses}">
-			</td>
-			<td th:text="${course.name}"></td>
-			<td th:text="${course.code}"></td>
-			<td th:text="${course.credits}"></td>
-			<td th:text="${course.grade}"></td>
-			<td th:text="${course.category.name}"></td> 	
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a></td>
-		</tr>
-	</table>
-	<a href="/programming" class="btn btn-success">View Programming Courses</a>
-	<a href="/save" class="btn btn-success">Add Course</a>
-</div>
 </body>
 
 </html>

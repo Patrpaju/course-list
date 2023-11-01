@@ -14,14 +14,14 @@ public class Course {
 	private Long id;
 	private String name, code;
 	private int credits;
-	private double grade;
+	private int grade;
 
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "categoryid")
 	private Category category;
 
-	public Course(String name, String code, int credits, double grade, Category category) {
+	public Course(String name, String code, int credits, int grade, Category category) {
 		super();
 		this.name = name;
 		this.code = code;
@@ -66,11 +66,11 @@ public class Course {
 		this.credits = credits;
 	}
 
-	public double getGrade() {
+	public int getGrade() {
 		return grade;
 	}
 
-	public void setGrade(double grade) {
+	public void setGrade(int grade) {
 		this.grade = grade;
 	}
 

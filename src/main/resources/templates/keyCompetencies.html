@@ -4,11 +4,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
-	<title>View Programming Courses</title>
+	<title>View Key Competency Courses</title>
 </head>
 
 <body>
-	<h1>Programming Courses</h1>
+	<h1>Key Competency Courses</h1>
 	<table class="table table-striped">
 		<tr>
 			<th>Name</th>
@@ -29,7 +29,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${course.id})}" class="btn btn-primary">Edit</a></td>
 		</tr>
 	</table>
-	<span th:if="${totalCredits}" th:text="'Total Credits in programming: ' + ${totalCredits}"></span><br>
+	<span th:if="${totalCredits}" th:text="'Total Credits in key competencies: ' + ${totalCredits}"></span><br>
 	</div>
 	<a href="/courselist" class="btn btn-primary">Go Back to all courses</a>
 </body>
