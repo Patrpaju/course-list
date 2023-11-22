@@ -23,14 +23,16 @@ public class CourselistApplication {
 		SpringApplication.run(CourselistApplication.class, args);
 	}
 
-	@Bean
+	// @Bean
 	public CommandLineRunner courseDemo(CourseRepository repository, CategoryRepository crepository,
 			AppUserRepository urepository) {
 		return (args) -> {
-		log.info("Adding some categories");
+		/* log.info("Adding some categories");
 		crepository.save(new Category("Ict and Business"));
 		crepository.save(new Category("Programming"));
 		crepository.save(new Category("Key Competencies"));
+		
+		log.info("Adding courses");
 		repository.save(new Course("Programming 1", "SOF005AS2AE-3001", 5, 4, crepository.findByName("Programming").get(0)));
 		repository.save(new Course("Programming 2", "SOF005AS2AE-3001", 5, 5, crepository.findByName("Programming").get(0)));
 		repository.save(new Course("Data Management and Databases", "SOF001AS2AE-3001", 5, 4, crepository.findByName("Programming").get(0)));
@@ -53,7 +55,7 @@ public class CourselistApplication {
 							"ADMIN");
 					urepository.save(user1);
 					urepository.save(user2);
-					
+			*/		
 					log.info("Fetch all courses");
 					for (Course course : repository.findAll()) {
 						log.info(course.toString());
